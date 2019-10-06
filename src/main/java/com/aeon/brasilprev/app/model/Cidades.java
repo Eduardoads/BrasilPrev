@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,22 +16,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "categorias")
+@Table(name = "cidades")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Categorias implements Serializable{
+public class Cidades implements Serializable{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7075064899398291513L;
+	private static final long serialVersionUID = 7913587106411279864L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idCategoria;
+	private Long idCidade;
 	
-	@Column(name = "categoria", length = 20, nullable = false)
-	private String categoria;
+	@Column(length = 150,nullable = false)
+    private String nome;    
+
+    @Column(name = "cod_ibge",nullable = false)
+	private Integer codIbge;
+
+	@Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Estados estado;
 
 }
